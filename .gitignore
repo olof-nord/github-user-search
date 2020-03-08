@@ -130,3 +130,10 @@ hs_err_pid*
 .nfs*
 
 # End of https://www.gitignore.io/api/java,linux,intellij
+
+# Compiled output
+/target/
+
+# IDEA folder
+/.idea
+/.idea/
