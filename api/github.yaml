@@ -1,0 +1,75 @@
+openapi: '3.0.0'
+info:
+  version: '3.0.0'
+  title: GitHub Search API
+  description: >
+    A section of the GitHub Search API.
+  contact:
+    url: https://developer.github.com/v3/search
+servers:
+  - url: https://api.github.com
+    description: GitHub API
+paths:
+  /search/repositories/{query}:
+    get:
+      summary: Search repositories
+      operationId: 'getRepositories'
+      tags:
+        - GitHub Search
+      parameters:
+        - $ref: '#/components/parameters/Query'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepositorySearch'
+
+components:
+  schemas:
+    RepositorySearch:
+      type: object
+      description: This is the response model following a search
+      properties:
+        total_count:
+          type: integer
+          example: 2
+          description: Number of results
+        incomplete_results:
+          type: boolean
+          example: false
+          description: If incomplete results
+        items:
+          type: array
+          description: The repositories found
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                example: 245885678
+                description: Repo id
+              node_id:
+                type: string
+                example: MDEwOlJlcG9zaXRvcnkyNDU4ODU2Nzg=
+              name:
+                type: string
+                example: github-user-search
+              full_name:
+                type: string
+                example: olof-nord/github-user-search
+              private:
+                type: boolean
+                example: false
+
+
+  parameters:
+    Query:
+      name: query
+      in: path
+      required: true
+      description: The query contains one or more search keywords and qualifiers.
+      example: '@olof-nord'
+      schema:
+        type: string
