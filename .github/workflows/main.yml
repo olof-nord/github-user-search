@@ -21,3 +21,8 @@ jobs:
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml
+
+      - name: Lint API specification
+        uses: docker://openapitools/openapi-generator-cli
+        with:
+          args: validate -i api/github.yaml
