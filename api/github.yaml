@@ -20,11 +20,12 @@ paths:
         - $ref: '#/components/parameters/Query'
         - $ref: '#/components/parameters/Sort'
         - $ref: '#/components/parameters/Order'
+        - $ref: '#/components/parameters/Accept'
       responses:
         '200':
           description: Successful response
           content:
-            'application/vnd.github.mercy-preview+json':
+            'application/json':
               schema:
                 $ref: '#/components/schemas/RepositorySearch'
 
@@ -442,3 +443,11 @@ components:
         enum:
           - desc
           - asc
+    Accept:
+      name: Accept
+      in: header
+      description: GitHub Accept header
+      required: false
+      schema:
+        type: string
+        default: application/vnd.github.mercy-preview+json
