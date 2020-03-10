@@ -77,6 +77,11 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+        <dependency>
+            <groupId>io.github.cdimascio</groupId>
+            <artifactId>java-dotenv</artifactId>
+            <version>5.1.3</version>
+        </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -121,10 +126,10 @@
                             <generateModelDocumentation>false</generateModelDocumentation>
                             <generateModelTests>false</generateModelTests>
 
-                            <groupId>${project.groupId}.generated</groupId>
+                            <groupId>${project.groupId}.githubsearch.generated</groupId>
                             <artifactId>${project.artifactId}-generated</artifactId>
-                            <modelPackage>${project.groupId}.generated.model</modelPackage>
-                            <apiPackage>${project.groupId}.generated.api</apiPackage>
+                            <modelPackage>${project.groupId}.githubsearch.generated.model</modelPackage>
+                            <apiPackage>${project.groupId}.githubsearch.generated.api</apiPackage>
 
                             <configOptions>
                                 <dateLibrary>java8</dateLibrary>

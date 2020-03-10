@@ -137,3 +137,6 @@ hs_err_pid*
 # IDEA folder
 /.idea
 /.idea/
+
+# Env files
+.env
