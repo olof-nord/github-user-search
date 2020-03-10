@@ -4,7 +4,6 @@ import info.olof.githubsearch.generated.api.GitHubSearchApi;
 import info.olof.githubsearch.generated.model.RepositorySearch;
 import io.github.cdimascio.dotenv.Dotenv;
 import io.reactivex.Observable;
-import io.reactivex.observers.DisposableObserver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -36,36 +35,18 @@ public class GitHubSearchService {
         accessToken = "token " + dotenv.get("GITHUB_ACCESS_TOKEN");
     }
 
-    public void searchGitHubRepositories(String username, List<String> programmingLanguages) {
+    public Observable<RepositorySearch> searchGitHubRepositories(String username, List<String> programmingLanguages) {
         String searchQuery = username + " language:" + programmingLanguages.get(0);
 
         LOGGER.info("GitHub search query: {}", searchQuery);
 
-        Observable<RepositorySearch> repositories = service.getRepositories(
+        return service.getRepositories(
             accessToken,
             searchQuery,
             ACCEPT_HEADER,
             "stars",
             "desc"
             );
-
-        repositories.subscribeWith(new DisposableObserver<>() {
-            @Override
-            public void onNext(RepositorySearch repositorySearch) {
-                LOGGER.info("onNext {}", repositorySearch);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                LOGGER.info("onError");
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onComplete() {
-                LOGGER.info("onComplete");
-            }
-        });
 
     }
 }

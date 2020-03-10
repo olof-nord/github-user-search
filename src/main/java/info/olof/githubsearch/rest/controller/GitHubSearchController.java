@@ -1,6 +1,6 @@
 package info.olof.githubsearch.rest.controller;
 
-import info.olof.githubsearch.rest.dto.SearchResultDTO;
+import info.olof.githubsearch.generated.model.RepositorySearch;
 import info.olof.githubsearch.service.GitHubSearchService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.async.DeferredResult;
 
 import java.util.List;
 
@@ -25,15 +26,22 @@ public class GitHubSearchController {
     private GitHubSearchService gitHubSearchService;
 
     @GetMapping("/search")
-    public ResponseEntity<SearchResultDTO> search(@RequestParam String username, @RequestParam(name = "programming_language") List<String> programmingLanguages) {
+    public DeferredResult<ResponseEntity<RepositorySearch>> search(@RequestParam String username, @RequestParam(name = "programming_language") List<String> programmingLanguages) {
+        DeferredResult<ResponseEntity<RepositorySearch>> deferredResult = new DeferredResult<>();
 
-        LOGGER.info("search input: username: {}, programming language(s): {}", username, programmingLanguages);
+        LOGGER.info("Search input: username: {}, programming language(s): {}", username, programmingLanguages);
 
-        gitHubSearchService.searchGitHubRepositories(username, programmingLanguages);
+        gitHubSearchService.searchGitHubRepositories(username, programmingLanguages)
+            .subscribe(
+                result -> deferredResult.setResult(
+                    ResponseEntity.ok()
+                        .body(result)),
+                error -> deferredResult.setResult(
+                    ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .build()
+                ));
 
-        return ResponseEntity.status(HttpStatus.OK)
-            .body(SearchResultDTO.builder()
-                .username(username)
-                .build());
+        return deferredResult;
+
     }
 }
