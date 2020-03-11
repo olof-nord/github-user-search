@@ -31,8 +31,12 @@ public class GitHubSearchService {
 
         service = retrofit.create(GitHubSearchApi.class);
 
-        Dotenv dotenv = Dotenv.load();
-        accessToken = "token " + dotenv.get("GITHUB_ACCESS_TOKEN");
+        try {
+            Dotenv dotenv = Dotenv.load();
+            accessToken = "token " + dotenv.get("GITHUB_ACCESS_TOKEN");
+        } catch (Exception e) {
+            LOGGER.error("No GITHUB_ACCESS_TOKEN available, please see readme for instructions");
+        }
     }
 
     public Observable<RepositorySearch> searchGitHubRepositories(String username, List<String> programmingLanguages) {
