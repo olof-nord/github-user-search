@@ -1,4 +1,4 @@
-# Github User Search
+# GitHub User Search
 
 Search for GitHub users using the GitHub Search API
 
@@ -8,8 +8,8 @@ Search for GitHub users using the GitHub Search API
 
 ### Tooling
 - [spring-boot](https://github.com/spring-projects/spring-boot)
-- [openapi-generator-maven-plugin](https://github.com/OpenAPITools/openapi-generator/tree/master/modules/openapi-generator-maven-plugin) for API client generation
-- [retrofit](https://github.com/square/retrofit) with [rxjava2](https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava2) as a RxJava2 HTTP client 
+- [openapi-generator-maven-plugin](https://github.com/OpenAPITools/openapi-generator/tree/master/modules/openapi-generator-maven-plugin) for API client and data model generation
+- [retrofit](https://github.com/square/retrofit) with [rxjava2](https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava2) as HTTP client 
 - [java-dotenv](https://github.com/cdimascio/java-dotenv) for .env file support
 
 ### GitHub Search API
@@ -32,7 +32,7 @@ they use in their public repositories as well as an username string.
 
 Note that the username should be written with an initial @ sign.
 
-An example URL:  
+An example request:  
 `http://localhost:8080/search?username=@olof-nord&programming_language=Java`
 
 Example response:
