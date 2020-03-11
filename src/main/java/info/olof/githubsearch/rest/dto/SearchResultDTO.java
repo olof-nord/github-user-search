@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.net.URI;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -13,7 +15,7 @@ public class SearchResultDTO {
 
     private String username;
     private String name;
-    private String avatarURL;
+    private URI avatarURL;
     private int numberOfFollowers = 0;
 
 }

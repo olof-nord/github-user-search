@@ -1,6 +1,6 @@
 package info.olof.githubsearch.rest.controller;
 
-import info.olof.githubsearch.generated.model.RepositorySearch;
+import info.olof.githubsearch.rest.dto.SearchResultDTO;
 import info.olof.githubsearch.service.GitHubSearchService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -26,20 +27,29 @@ public class GitHubSearchController {
     private GitHubSearchService gitHubSearchService;
 
     @GetMapping("/search")
-    public DeferredResult<ResponseEntity<RepositorySearch>> search(@RequestParam String username, @RequestParam(name = "programming_language") List<String> programmingLanguages) {
-        DeferredResult<ResponseEntity<RepositorySearch>> deferredResult = new DeferredResult<>();
+    public DeferredResult<ResponseEntity<List<SearchResultDTO>>> search(@RequestParam String username, @RequestParam(name = "programming_language") List<String> programmingLanguages) {
+        DeferredResult<ResponseEntity<List<SearchResultDTO>>> deferredResult = new DeferredResult<>();
 
         LOGGER.info("Search input: username: {}, programming language(s): {}", username, programmingLanguages);
 
         gitHubSearchService.searchGitHubRepositories(username, programmingLanguages)
             .subscribe(
-                result -> deferredResult.setResult(
-                    ResponseEntity.ok()
-                        .body(result)),
-                error -> deferredResult.setResult(
-                    ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                result -> {
+                    ArrayList<SearchResultDTO> users = new ArrayList<>();
+
+                    result.getItems().forEach(item -> users.add(SearchResultDTO.builder()
+                        .username(item.getOwner().getLogin())
+                        .name(item.getName())
+                        .avatarURL(item.getOwner().getAvatarUrl())
                         .build()
-                ));
+                    ));
+
+                    deferredResult.setResult(ResponseEntity.ok().body(users));
+                },
+                error -> {
+                    LOGGER.error("No search results found");
+                    deferredResult.setResult(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
+                });
 
         return deferredResult;
 

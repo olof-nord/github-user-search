@@ -36,17 +36,11 @@ public class GitHubSearchService {
     }
 
     public Observable<RepositorySearch> searchGitHubRepositories(String username, List<String> programmingLanguages) {
-        String searchQuery = username + " language:" + programmingLanguages.get(0);
 
+        String searchQuery = username + " language:" + programmingLanguages.get(0);
         LOGGER.info("GitHub search query: {}", searchQuery);
 
-        return service.getRepositories(
-            accessToken,
-            searchQuery,
-            ACCEPT_HEADER,
-            "stars",
-            "desc"
-            );
+        return service.getRepositories(accessToken, searchQuery, ACCEPT_HEADER,"stars","desc");
 
     }
 }
