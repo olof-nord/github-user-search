@@ -123,6 +123,7 @@
                             <generateApiTests>false</generateApiTests>
 
                             <generateModels>true</generateModels>
+                            <generateAliasAsModel>true</generateAliasAsModel>
                             <generateModelDocumentation>false</generateModelDocumentation>
                             <generateModelTests>false</generateModelTests>
 
@@ -133,7 +134,6 @@
 
                             <configOptions>
                                 <dateLibrary>java8</dateLibrary>
-                                <sourceFolder>generated</sourceFolder>
                                 <useRxJava2>true</useRxJava2>
                             </configOptions>
                         </configuration>

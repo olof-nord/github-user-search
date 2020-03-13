@@ -1,7 +1,7 @@
 package info.olof.githubsearch.service;
 
 import info.olof.githubsearch.generated.api.GitHubSearchApi;
-import info.olof.githubsearch.generated.model.RepositorySearch;
+import info.olof.githubsearch.generated.model.GitHubRepositorySearch;
 import io.github.cdimascio.dotenv.Dotenv;
 import io.reactivex.Observable;
 import org.slf4j.Logger;
@@ -34,7 +34,7 @@ public class GitHubSearchService {
         accessToken = setupGitHubAccessToken();
     }
 
-    public Observable<RepositorySearch> searchGitHubRepositories(String username, List<String> programmingLanguages) {
+    public Observable<GitHubRepositorySearch> searchGitHubRepositories(String username, List<String> programmingLanguages) {
 
         String searchQuery = username + " language:" + programmingLanguages.get(0);
         LOGGER.info("GitHub search query: {}", searchQuery);

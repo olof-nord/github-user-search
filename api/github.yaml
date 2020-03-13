@@ -12,7 +12,7 @@ servers:
 paths:
   /search/repositories:
     get:
-      summary: Search repositories
+      summary: Search GitHub repositories
       operationId: 'getRepositories'
       tags:
         - GitHub Search
@@ -26,13 +26,36 @@ paths:
           content:
             'application/json':
               schema:
-                $ref: '#/components/schemas/RepositorySearch'
+                $ref: '#/components/schemas/GitHubRepositorySearch'
+
+  /search:
+    get:
+      summary: Simplified search for GitHub repositories
+      operationId: 'simplifiedGetRepositories'
+      tags:
+        - GitHub Search
+      parameters:
+        - $ref: '#/components/parameters/Username'
+        - $ref: '#/components/parameters/ProgrammingLanguage'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/SimpleRepositorySearchResponses'
+        '400':
+          description: Unsuccessful response
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/Error'
 
 components:
   schemas:
-    RepositorySearch:
+    GitHubRepositorySearch:
       type: object
-      description: This is the response model following a repository search
+      description: This is the response model following a GitHub repository search
       properties:
         total_count:
           type: integer
@@ -376,6 +399,48 @@ components:
                 format: float
                 example: 1.0
 
+    SimpleRepositorySearchResponse:
+      type: object
+      description: This is the response model for the simplified GitHub repository search
+      properties:
+        username:
+          type: string
+          example: olof-nord
+          description: The repository owner
+        name:
+          type: string
+          example: github-user-search
+          description: The repository name
+        avatar_url:
+          type: string
+          format: uri
+          description: The repository owner avatar URL
+        number_of_followers:
+          type: integer
+          example: 0
+          description: The number of followers of the repository
+
+    SimpleRepositorySearchResponses:
+      type: array
+      items:
+        $ref: '#/components/schemas/SimpleRepositorySearchResponse'
+
+    Error:
+      type: object
+      description: The response model used for errors
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          example: 404
+          description: The HTTP error code
+        message:
+          type: string
+          example: Resource not found
+          description: A message describing the error
+
   parameters:
     Query:
       name: q
@@ -403,3 +468,20 @@ components:
       schema:
         type: string
         default: application/vnd.github.mercy-preview+json
+
+    Username:
+      name: username
+      in: query
+      description: Username to search for
+      example: '@olof-nord'
+      required: true
+      schema:
+        type: string
+    ProgrammingLanguage:
+      name: programming_language
+      in: query
+      description: Programming language(s) to search for
+      example: 'Java'
+      required: true
+      schema:
+        type: string
