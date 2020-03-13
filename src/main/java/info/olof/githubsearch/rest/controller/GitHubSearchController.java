@@ -32,7 +32,7 @@ public class GitHubSearchController {
 
         LOGGER.info("Search input: username: {}, programming language(s): {}", username, programmingLanguages);
 
-        gitHubSearchService.searchGitHubRepositories(username, programmingLanguages)
+        gitHubSearchService.searchGitHubRepositories(username, programmingLanguages.get(0))
             .subscribe(
                 result -> {
                     SimpleRepositorySearchResponses repositories = new SimpleRepositorySearchResponses();

@@ -11,8 +11,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.util.List;
-
 @Service
 public class GitHubSearchService {
 
@@ -34,10 +32,11 @@ public class GitHubSearchService {
         accessToken = setupGitHubAccessToken();
     }
 
-    public Observable<GitHubRepositorySearch> searchGitHubRepositories(String username, List<String> programmingLanguages) {
+    public Observable<GitHubRepositorySearch> searchGitHubRepositories(String username, String programmingLanguage) {
+        username = addAtSignIfNotPresent(username);
 
-        String searchQuery = username + " language:" + programmingLanguages.get(0);
-        LOGGER.info("GitHub search query: {}", searchQuery);
+        String searchQuery = username + " language:" + programmingLanguage;
+        LOGGER.info("GitHub search query: '{}'", searchQuery);
 
         return service.getRepositories(accessToken, searchQuery, ACCEPT_HEADER);
 
@@ -63,5 +62,14 @@ public class GitHubSearchService {
         }
 
         return "token " + accessToken;
+    }
+
+    private String addAtSignIfNotPresent(String username) {
+
+        if(!username.startsWith("@")) {
+            username = "@" + username;
+        }
+
+        return username;
     }
 }

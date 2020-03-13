@@ -419,6 +419,7 @@ components:
           type: integer
           example: 0
           description: The number of followers of the repository
+          default: 0
 
     SimpleRepositorySearchResponses:
       type: array

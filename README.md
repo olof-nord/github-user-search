@@ -33,10 +33,8 @@ Search for GitHub users using the GitHub Search API
 The service provides a single API endpoint to to search for GitHub users by specifying a programming language 
 they use in their public repositories as well as an username string.
 
-Note that the username should be written with an initial @ sign.
-
 An example request:  
-`http://localhost:8080/search?username=@olof-nord&programming_language=Java`
+`http://localhost:8080/search?username=olof-nord&programming_language=Java`
 
 Example response:
 ```json
