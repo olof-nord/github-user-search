@@ -69,339 +69,349 @@ components:
           type: array
           description: The repositories found
           items:
-            type: object
-            properties:
-              id:
-                type: integer
-                example: 245885678
-                description: The repository id
-              node_id:
-                type: string
-                example: MDEwOlJlcG9zaXRvcnkyNDU4ODU2Nzg=
-              name:
-                type: string
-                example: github-user-search
-                description: The repository name
-              full_name:
-                type: string
-                example: olof-nord/github-user-search
-              private:
-                type: boolean
-                example: false
-              owner:
-                type: object
-                description: Repo owner
-                properties:
-                  login:
-                    type: string
-                    example: olof-nord
-                    description: The repository login
-                  id:
-                    type: integer
-                    example: 488769
-                    description: Owner id
-                  node_id:
-                    type: string
-                    example: MDQ6VXNlcjQ4ODc2OQ==
-                  avatar_url:
-                    type: string
-                    format: uri
-                    example: https://avatars2.githubusercontent.com/u/488769?v=4
-                  gravatar_id:
-                    type: string
-                    example:
-                  url:
-                    type: string
-                    format: uri
-                    example: https://api.github.com/users/olof-nord
-                  html_url:
-                    type: string
-                    format: uri
-                    example: https://github.com/olof-nord
-                  followers_url:
-                    type: string
-                    format: uri
-                    example: https://api.github.com/users/olof-nord/followers
-                  following_url:
-                    type: string
-                    example: https://api.github.com/users/olof-nord/following{/other_user}
-                  gists_url:
-                    type: string
-                    example: https://api.github.com/users/olof-nord/gists{/gist_id}
-                  starred_url:
-                    type: string
-                    example: https://api.github.com/users/olof-nord/starred{/owner}{/repo}
-                  subscriptions_url:
-                    type: string
-                    format: uri
-                    example: https://api.github.com/users/olof-nord/subscriptions
-                  organizations_url:
-                    type: string
-                    format: uri
-                    example: https://api.github.com/users/olof-nord/orgs
-                  repos_url:
-                    type: string
-                    format: uri
-                    example: https://api.github.com/users/olof-nord/repos
-                  events_url:
-                    type: string
-                    example: https://api.github.com/users/olof-nord/events{/privacy}
-                  received_events_url:
-                    type: string
-                    format: uri
-                    example: https://api.github.com/users/olof-nord/received_events
-                  type:
-                    type: string
-                    example: User
-                    enum:
-                      - User
-                  site_admin:
-                    type: boolean
-                    example: false
-              html_url:
-                type: string
-                format: uri
-                example: https://github.com/olof-nord/github-user-search
-              description:
-                type: string
-                example: Search for GitHub users using GitHub Search API
-              fork:
-                type: boolean
-                example: false
-              url:
-                type: string
-                format: uri
-                example: https://api.github.com/repos/olof-nord/github-user-search
-              forks_url:
-                type: string
-                format: uri
-                example: https://api.github.com/repos/olof-nord/github-user-search/forks
-              keys_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/keys{/key_id}
-              collaborators_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/collaborators{/collaborator}
-              teams_url:
-                type: string
-                format: uri
-                example: https://api.github.com/repos/olof-nord/github-user-search/teams
-              hooks_url:
-                type: string
-                format: uri
-                example: https://api.github.com/repos/olof-nord/github-user-search/hooks
-              issue_events_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/issues/events{/number}
-              events_url:
-                type: string
-                format: uri
-                example: https://api.github.com/repos/olof-nord/github-user-search/events
-              assignees_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/assignees{/user}
-              branches_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/branches{/branch}
-              tags_url:
-                type: string
-                format: uri
-                example: https://api.github.com/repos/olof-nord/github-user-search/tags
-              blobs_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/git/blobs{/sha}
-              git_tags_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/git/tags{/sha}
-              git_refs_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/git/refs{/sha}
-              trees_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/git/trees{/sha}
-              statuses_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/statuses/{sha}
-              languages_url:
-                type: string
-                format: uri
-                example: https://api.github.com/repos/olof-nord/github-user-search/languages
-              stargazers_url:
-                type: string
-                format: uri
-                example: https://api.github.com/repos/olof-nord/github-user-search/stargazers
-              contributors_url:
-                type: string
-                format: uri
-                example: https://api.github.com/repos/olof-nord/github-user-search/contributors
-              subscribers_url:
-                type: string
-                format: uri
-                example: https://api.github.com/repos/olof-nord/github-user-search/subscribers
-              subscription_url:
-                type: string
-                format: uri
-                example: https://api.github.com/repos/olof-nord/github-user-search/subscription
-              commits_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/commits{/sha}
-              git_commits_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/git/commits{/sha}
-              comments_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/comments{/number}
-              issue_comment_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/issues/comments{/number}
-              contents_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/contents/{+path}
-              compare_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/compare/{base}...{head}
-              merges_url:
-                type: string
-                format: uri
-                example: https://api.github.com/repos/olof-nord/github-user-search/merges
-              archive_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/{archive_format}{/ref}
-              downloads_url:
-                type: string
-                format: uri
-                example: https://api.github.com/repos/olof-nord/github-user-search/downloads
-              issues_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/issues{/number}
-              pulls_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/pulls{/number}
-              milestones_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/milestones{/number}
-              notifications_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/notifications{?since,all,participating}
-              labels_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/labels{/name}
-              releases_url:
-                type: string
-                example: https://api.github.com/repos/olof-nord/github-user-search/releases{/id}
-              deployments_url:
-                type: string
-                format: uri
-                example: https://api.github.com/repos/olof-nord/github-user-search/deployments
-              created_at:
-                type: string
-                example: '2020-03-08T20:46:57Z'
-              updated_at:
-                type: string
-                example: '2020-03-09T20:02:32Z'
-              pushed_at:
-                type: string
-                example: '2020-03-09T20:02:30Z'
-              git_url:
-                type: string
-                example: git://github.com/olof-nord/github-user-search.git
-              ssh_url:
-                type: string
-                example: git@github.com:olof-nord/github-user-search.git
-              clone_url:
-                type: string
-                format: uri
-                example: https://github.com/olof-nord/github-user-search.git
-              svn_url:
-                type: string
-                format: uri
-                example: https://github.com/olof-nord/github-user-search
-              homepage:
-                type: string
-                example: null
-              size:
-                type: integer
-                example: 20
-              stargazers_count:
-                type: integer
-                example: 0
-              watchers_count:
-                type: integer
-                example: 0
-              language:
-                type: string
-                example: Java
-              has_issues:
-                type: boolean
-                example: true
-              has_projects:
-                type: boolean
-                example: true
-              has_downloads:
-                type: boolean
-                example: true
-              has_wiki:
-                type: boolean
-                example: true
-              has_pages:
-                type: boolean
-                example: false
-              forks_count:
-                type: integer
-                example: 0
-              mirror_url:
-                type: string
-                format: uri
-                example: null
-              archived:
-                type: boolean
-                example: false
-              disabled:
-                type: boolean
-                example: false
-              open_issues_count:
-                type: integer
-                example: 0
-              license:
-                type: object
-                description: Repository license information
-                properties:
-                  key:
-                    type: string
-                    example: gpl-3.0
-                  name:
-                    type: string
-                    example: GNU General Public License v3.0
-                  spdx_id:
-                    type: string
-                    example: GPL-3.0
-                  url:
-                    type: string
-                    format: uri
-                    example: https://api.github.com/licenses/gpl-3.0
-                  node_id:
-                    type: string
-                    example: MDc6TGljZW5zZTk=
-              forks:
-                type: integer
-                example: 0
-              open_issues:
-                type: integer
-                example: 0
-              watchers:
-                type: integer
-                example: 0
-              default_branch:
-                type: string
-                example: master
-              score:
-                type: number
-                format: float
-                example: 1.0
+            $ref: '#/components/schemas/GitHubRepository'
+
+    GitHubRepository:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 245885678
+          description: The repository id
+        node_id:
+          type: string
+          example: MDEwOlJlcG9zaXRvcnkyNDU4ODU2Nzg=
+        name:
+          type: string
+          example: github-user-search
+          description: The repository name
+        full_name:
+          type: string
+          example: olof-nord/github-user-search
+        private:
+          type: boolean
+          example: false
+        owner:
+          type: object
+          description: Repo owner
+          properties:
+            login:
+              type: string
+              example: olof-nord
+              description: The repository login
+            id:
+              type: integer
+              example: 488769
+              description: Owner id
+            node_id:
+              type: string
+              example: MDQ6VXNlcjQ4ODc2OQ==
+            avatar_url:
+              type: string
+              format: uri
+              example: https://avatars2.githubusercontent.com/u/488769?v=4
+            gravatar_id:
+              type: string
+              example:
+            url:
+              type: string
+              format: uri
+              example: https://api.github.com/users/olof-nord
+            html_url:
+              type: string
+              format: uri
+              example: https://github.com/olof-nord
+            followers_url:
+              type: string
+              format: uri
+              example: https://api.github.com/users/olof-nord/followers
+            following_url:
+              type: string
+              example: https://api.github.com/users/olof-nord/following{/other_user}
+            gists_url:
+              type: string
+              example: https://api.github.com/users/olof-nord/gists{/gist_id}
+            starred_url:
+              type: string
+              example: https://api.github.com/users/olof-nord/starred{/owner}{/repo}
+            subscriptions_url:
+              type: string
+              format: uri
+              example: https://api.github.com/users/olof-nord/subscriptions
+            organizations_url:
+              type: string
+              format: uri
+              example: https://api.github.com/users/olof-nord/orgs
+            repos_url:
+              type: string
+              format: uri
+              example: https://api.github.com/users/olof-nord/repos
+            events_url:
+              type: string
+              example: https://api.github.com/users/olof-nord/events{/privacy}
+            received_events_url:
+              type: string
+              format: uri
+              example: https://api.github.com/users/olof-nord/received_events
+            type:
+              type: string
+              example: User
+              enum:
+                - User
+            site_admin:
+              type: boolean
+              example: false
+        html_url:
+          type: string
+          format: uri
+          example: https://github.com/olof-nord/github-user-search
+        description:
+          type: string
+          example: Search for GitHub users using GitHub Search API
+        fork:
+          type: boolean
+          example: false
+        url:
+          type: string
+          format: uri
+          example: https://api.github.com/repos/olof-nord/github-user-search
+        forks_url:
+          type: string
+          format: uri
+          example: https://api.github.com/repos/olof-nord/github-user-search/forks
+        keys_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/keys{/key_id}
+        collaborators_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/collaborators{/collaborator}
+        teams_url:
+          type: string
+          format: uri
+          example: https://api.github.com/repos/olof-nord/github-user-search/teams
+        hooks_url:
+          type: string
+          format: uri
+          example: https://api.github.com/repos/olof-nord/github-user-search/hooks
+        issue_events_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/issues/events{/number}
+        events_url:
+          type: string
+          format: uri
+          example: https://api.github.com/repos/olof-nord/github-user-search/events
+        assignees_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/assignees{/user}
+        branches_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/branches{/branch}
+        tags_url:
+          type: string
+          format: uri
+          example: https://api.github.com/repos/olof-nord/github-user-search/tags
+        blobs_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/git/blobs{/sha}
+        git_tags_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/git/tags{/sha}
+        git_refs_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/git/refs{/sha}
+        trees_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/git/trees{/sha}
+        statuses_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/statuses/{sha}
+        languages_url:
+          type: string
+          format: uri
+          example: https://api.github.com/repos/olof-nord/github-user-search/languages
+        stargazers_url:
+          type: string
+          format: uri
+          example: https://api.github.com/repos/olof-nord/github-user-search/stargazers
+        contributors_url:
+          type: string
+          format: uri
+          example: https://api.github.com/repos/olof-nord/github-user-search/contributors
+        subscribers_url:
+          type: string
+          format: uri
+          example: https://api.github.com/repos/olof-nord/github-user-search/subscribers
+        subscription_url:
+          type: string
+          format: uri
+          example: https://api.github.com/repos/olof-nord/github-user-search/subscription
+        commits_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/commits{/sha}
+        git_commits_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/git/commits{/sha}
+        comments_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/comments{/number}
+        issue_comment_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/issues/comments{/number}
+        contents_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/contents/{+path}
+        compare_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/compare/{base}...{head}
+        merges_url:
+          type: string
+          format: uri
+          example: https://api.github.com/repos/olof-nord/github-user-search/merges
+        archive_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/{archive_format}{/ref}
+        downloads_url:
+          type: string
+          format: uri
+          example: https://api.github.com/repos/olof-nord/github-user-search/downloads
+        issues_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/issues{/number}
+        pulls_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/pulls{/number}
+        milestones_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/milestones{/number}
+        notifications_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/notifications{?since,all,participating}
+        labels_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/labels{/name}
+        releases_url:
+          type: string
+          example: https://api.github.com/repos/olof-nord/github-user-search/releases{/id}
+        deployments_url:
+          type: string
+          format: uri
+          example: https://api.github.com/repos/olof-nord/github-user-search/deployments
+        created_at:
+          type: string
+          example: '2020-03-08T20:46:57Z'
+        updated_at:
+          type: string
+          example: '2020-03-09T20:02:32Z'
+        pushed_at:
+          type: string
+          example: '2020-03-09T20:02:30Z'
+        git_url:
+          type: string
+          example: git://github.com/olof-nord/github-user-search.git
+        ssh_url:
+          type: string
+          example: git@github.com:olof-nord/github-user-search.git
+        clone_url:
+          type: string
+          format: uri
+          example: https://github.com/olof-nord/github-user-search.git
+        svn_url:
+          type: string
+          format: uri
+          example: https://github.com/olof-nord/github-user-search
+        homepage:
+          type: string
+          example: null
+        size:
+          type: integer
+          example: 20
+        stargazers_count:
+          type: integer
+          example: 0
+          default: 0
+        watchers_count:
+          type: integer
+          example: 0
+          default: 0
+        language:
+          type: string
+          example: Java
+        has_issues:
+          type: boolean
+          example: true
+        has_projects:
+          type: boolean
+          example: true
+        has_downloads:
+          type: boolean
+          example: true
+        has_wiki:
+          type: boolean
+          example: true
+        has_pages:
+          type: boolean
+          example: false
+        forks_count:
+          type: integer
+          example: 0
+          default: 0
+        mirror_url:
+          type: string
+          format: uri
+          example: null
+        archived:
+          type: boolean
+          example: false
+        disabled:
+          type: boolean
+          example: false
+        open_issues_count:
+          type: integer
+          example: 0
+          default: 0
+        license:
+          type: object
+          description: Repository license information
+          properties:
+            key:
+              type: string
+              example: gpl-3.0
+            name:
+              type: string
+              example: GNU General Public License v3.0
+            spdx_id:
+              type: string
+              example: GPL-3.0
+            url:
+              type: string
+              format: uri
+              example: https://api.github.com/licenses/gpl-3.0
+            node_id:
+              type: string
+              example: MDc6TGljZW5zZTk=
+        forks:
+          type: integer
+          example: 0
+          default: 0
+        open_issues:
+          type: integer
+          example: 0
+          default: 0
+        watchers:
+          type: integer
+          example: 0
+          default: 0
+        default_branch:
+          type: string
+          example: master
+        score:
+          type: number
+          format: float
+          example: 1.0
 
     SimpleRepositorySearchResponse:
       type: object
-      description: This is the response model for the simplified GitHub repository search
+      description: This is the response model for the simplified GitHub repository search results
       properties:
         username:
           type: string

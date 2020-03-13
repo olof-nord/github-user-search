@@ -1,7 +1,7 @@
 package info.olof.githubsearch.rest.controller;
 
 import info.olof.githubsearch.generated.model.SimpleRepositorySearchResponse;
-import info.olof.githubsearch.generated.model.SimpleRepositorySearchResponses;
+import info.olof.githubsearch.rest.mapper.GitHubSearchResultMapperImpl;
 import info.olof.githubsearch.service.GitHubSearchService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
@@ -24,28 +25,21 @@ public class GitHubSearchController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GitHubSearchController.class);
 
-    private GitHubSearchService gitHubSearchService;
+    private final GitHubSearchService gitHubSearchService;
+    private final GitHubSearchResultMapperImpl searchResultMapper;
 
     @GetMapping("/search")
-    public DeferredResult<ResponseEntity<SimpleRepositorySearchResponses>> search(@RequestParam String username, @RequestParam(name = "programming_language") List<String> programmingLanguages) {
-        DeferredResult<ResponseEntity<SimpleRepositorySearchResponses>> deferredResult = new DeferredResult<>();
+    public DeferredResult<ResponseEntity<List<SimpleRepositorySearchResponse>>> search(@RequestParam String username, @RequestParam(name = "programming_language") List<String> programmingLanguages) {
+        DeferredResult<ResponseEntity<List<SimpleRepositorySearchResponse>>> deferredResult = new DeferredResult<>();
 
         LOGGER.info("Search input: username: {}, programming language(s): {}", username, programmingLanguages);
 
         gitHubSearchService.searchGitHubRepositories(username, programmingLanguages.get(0))
             .subscribe(
                 result -> {
-                    SimpleRepositorySearchResponses repositories = new SimpleRepositorySearchResponses();
-
-                    result.getItems().forEach(item -> {
-                        SimpleRepositorySearchResponse repository = new SimpleRepositorySearchResponse();
-
-                        repository.setUsername(item.getOwner().getLogin());
-                        repository.setName(item.getName());
-                        repository.setAvatarUrl(item.getOwner().getAvatarUrl());
-
-                        repositories.add(repository);
-                    });
+                    List<SimpleRepositorySearchResponse> repositories = result.getItems().stream()
+                        .map(searchResultMapper::GitHubSearchToSimpleRepositorySearchResponse)
+                        .collect(Collectors.toList());
 
                     deferredResult.setResult(ResponseEntity.ok().body(repositories));
                 },
