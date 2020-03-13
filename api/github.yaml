@@ -20,8 +20,6 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Query'
-        - $ref: '#/components/parameters/Sort'
-        - $ref: '#/components/parameters/Order'
       responses:
         '200':
           description: Successful response
@@ -387,31 +385,6 @@ components:
       example: '@olof-nord'
       schema:
         type: string
-    Sort:
-      name: sort
-      in: query
-      required: false
-      description: Sorts the results of your query. Without specifying, uses 'best match'.
-      example: stars
-      schema:
-        type: string
-        enum:
-          - stars
-          - forks
-          - help-wanted-issues
-          - updated
-    Order:
-      name: order
-      in: query
-      required: false
-      description: Determines whether the first search result returned is the highest number of matches. This parameter is ignored unless you provide sort.
-      example: desc
-      schema:
-        type: string
-        default: desc
-        enum:
-          - desc
-          - asc
     Accept:
       name: Accept
       in: header
