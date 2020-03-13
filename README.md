@@ -23,8 +23,11 @@ Search for GitHub users using the GitHub Search API
 ### Build docker  
 `docker build . --tag github-user-search`
 
-### Start service
+### Start service with Maven
 `mvn spring-boot:run`
+
+### Start service with Docker
+`docker run -p 8080:8080 -e GITHUB_ACCESS_TOKEN=xyz -it github-user-search:latest`
 
 ## Usage
 The service provides a single API endpoint to to search for GitHub users by specifying a programming language 

@@ -6,7 +6,6 @@ ARG APP_NAME=github-search
 ARG JAR_FILE=target/${APP_NAME}-${APP_VERSION}.jar
 
 ADD ${JAR_FILE} usr/app/backend.jar
-ADD .env usr/app/.env
 
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "usr/app/backend.jar"]

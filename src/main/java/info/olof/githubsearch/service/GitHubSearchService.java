@@ -31,12 +31,7 @@ public class GitHubSearchService {
 
         service = retrofit.create(GitHubSearchApi.class);
 
-        try {
-            Dotenv dotenv = Dotenv.load();
-            accessToken = "token " + dotenv.get("GITHUB_ACCESS_TOKEN");
-        } catch (Exception e) {
-            LOGGER.error("No GITHUB_ACCESS_TOKEN available, please see readme for instructions");
-        }
+        accessToken = setupGitHubAccessToken();
     }
 
     public Observable<RepositorySearch> searchGitHubRepositories(String username, List<String> programmingLanguages) {
@@ -46,5 +41,27 @@ public class GitHubSearchService {
 
         return service.getRepositories(accessToken, searchQuery, ACCEPT_HEADER,"stars","desc");
 
+    }
+
+    private String setupGitHubAccessToken() {
+
+        Dotenv dotenv = Dotenv.configure()
+            .ignoreIfMissing()
+            .ignoreIfMalformed()
+            .load();
+
+        String accessToken = dotenv.get("GITHUB_ACCESS_TOKEN");
+
+        if(accessToken == null) {
+            accessToken = System.getenv("GITHUB_ACCESS_TOKEN");
+        }
+
+        if(accessToken == null){
+            LOGGER.error("A GitHub API token is required!");
+            LOGGER.error("Please provide a value using the GITHUB_ACCESS_TOKEN environment variable");
+            System.exit(0);
+        }
+
+        return "token " + accessToken;
     }
 }
