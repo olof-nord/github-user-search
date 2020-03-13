@@ -27,6 +27,12 @@ paths:
             'application/json':
               schema:
                 $ref: '#/components/schemas/GitHubRepositorySearch'
+        '422':
+          description: Unprocessable entity
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/GitHubError'
 
   /search:
     get:
@@ -44,12 +50,6 @@ paths:
             'application/json':
               schema:
                 $ref: '#/components/schemas/SimpleRepositorySearchResponses'
-        '400':
-          description: Unsuccessful response
-          content:
-            'application/json':
-              schema:
-                $ref: '#/components/schemas/Error'
 
 components:
   schemas:
@@ -436,21 +436,39 @@ components:
       items:
         $ref: '#/components/schemas/SimpleRepositorySearchResponse'
 
-    Error:
+    GitHubError:
       type: object
-      description: The response model used for errors
-      required:
-        - code
-        - message
+      description: The response model used for GitHub errors
       properties:
-        code:
-          type: integer
-          example: 404
-          description: The HTTP error code
         message:
           type: string
-          example: Resource not found
-          description: A message describing the error
+          example: Validation Failed
+          description: General error message
+        documentation_url:
+          type: string
+          format: uri
+          example: https://developer.github.com/v3/search/
+          description: Documentation URL
+        errors:
+          type: array
+          items:
+            type: object
+            description: More detailed error messages
+            properties:
+              message:
+                type: string
+                example: The listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.
+                description: Detailed error message
+              resource:
+                type: string
+                example: Search
+              field:
+                type: string
+                example: q
+              code:
+                type: string
+                example: invalid
+                description: The error code
 
   parameters:
     Query:
