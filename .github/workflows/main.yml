@@ -21,6 +21,8 @@ jobs:
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Lint API specification
         uses: docker://openapitools/openapi-generator-cli
