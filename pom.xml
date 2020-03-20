@@ -43,21 +43,7 @@
             <artifactId>converter-gson</artifactId>
             <version>${retrofit2.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.squareup.retrofit2</groupId>
-            <artifactId>converter-scalars</artifactId>
-            <version>${retrofit2.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.6</version>
-        </dependency>
-        <dependency>
-            <groupId>io.gsonfire</groupId>
-            <artifactId>gson-fire</artifactId>
-            <version>1.8.3</version>
-        </dependency>
+
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
@@ -67,12 +53,6 @@
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>jsr305</artifactId>
             <version>3.0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.oltu.oauth2</groupId>
-            <artifactId>org.apache.oltu.oauth2.client</artifactId>
-            <!-- Note: version 1.0.2 does not compile -->
-            <version>1.0.1</version>
         </dependency>
         <dependency>
 			<groupId>org.projectlombok</groupId>
@@ -147,6 +127,10 @@
                             <generatorName>java</generatorName>
                             <library>retrofit2</library>
                             <strictSpec>true</strictSpec>
+
+                            <supportingFilesToGenerate>
+                                CollectionFormats.java,StringUtil.java
+                            </supportingFilesToGenerate>
 
                             <generateApis>true</generateApis>
                             <generateApiDocumentation>false</generateApiDocumentation>
