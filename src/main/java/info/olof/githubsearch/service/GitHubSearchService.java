@@ -14,7 +14,7 @@ public class GitHubSearchService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GitHubSearchService.class);
 
-    @Value("${github.acceptHeader}")
+    @Value("${github.accept-header}")
     private String acceptHeader;
 
     private GitHubSearchApi gitHubSearchApi;

@@ -1,19 +1,20 @@
 {
     "properties": [
         {
-            "name": "github.baseUrl",
+            "name": "github.base-url",
             "type": "java.lang.String",
-            "description": "GitHub base URL."
+            "description": "GitHub base URL.",
+            "defaultValue": "https://api.github.com"
         },
         {
-            "name": "github.acceptHeader",
+            "name": "github.accept-header",
             "type": "java.lang.String",
             "description": "GitHub accept header."
         },
         {
-            "name": "retrofit.callTimeoutInSeconds",
-            "type": "java.lang.Integer",
-            "description": "Retrofit call timeout in seconds."
+            "name": "retrofit.call-timeout",
+            "type": "java.time.Duration",
+            "description": "Retrofit call timeout."
         }
     ]
 }

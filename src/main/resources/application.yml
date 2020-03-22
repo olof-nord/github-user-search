@@ -5,8 +5,8 @@ spring:
     name: github-search
 
 github:
-  baseUrl: https://api.github.com
-  acceptHeader: application/vnd.github.mercy-preview+json
+  base-url: https://api.github.com
+  accept-header: application/vnd.github.mercy-preview+json
 
 retrofit:
-  callTimeoutInSeconds: 15
+  call-timeout: 15s
