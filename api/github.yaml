@@ -298,12 +298,15 @@ components:
           example: https://api.github.com/repos/olof-nord/github-user-search/deployments
         created_at:
           type: string
+          format: date-time
           example: '2020-03-08T20:46:57Z'
         updated_at:
           type: string
+          format: date-time
           example: '2020-03-09T20:02:32Z'
         pushed_at:
           type: string
+          format: date-time
           example: '2020-03-09T20:02:30Z'
         git_url:
           type: string
