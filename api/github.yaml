@@ -310,9 +310,11 @@ components:
           example: '2020-03-09T20:02:30Z'
         git_url:
           type: string
+          format: uri
           example: git://github.com/olof-nord/github-user-search.git
         ssh_url:
           type: string
+          format: uri
           example: git@github.com:olof-nord/github-user-search.git
         clone_url:
           type: string
