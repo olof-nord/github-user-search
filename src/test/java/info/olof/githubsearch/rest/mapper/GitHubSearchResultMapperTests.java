@@ -10,8 +10,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.web.util.UriTemplate;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.stream.Stream;
 
@@ -27,7 +27,7 @@ public class GitHubSearchResultMapperTests {
     private GitHubSearchResultMapperImpl searchResultMapper;
 
     @SuppressWarnings("unused")
-    private static Stream<Arguments> provideTestInput() throws URISyntaxException {
+    private static Stream<Arguments> provideTestInput() {
         GitHubRepository repository1 = setUpTestRepositoryResponse(
             "olof-nord",
             "github-user-search",
@@ -64,11 +64,11 @@ public class GitHubSearchResultMapperTests {
         assertEquals(result.getNumberOfFollowers(), repository.getWatchersCount());
     }
 
-    private static GitHubRepository setUpTestRepositoryResponse(String username, String repoName, int watchCount, String avatarUrl) throws URISyntaxException {
+    private static GitHubRepository setUpTestRepositoryResponse(String username, String repoName, int watchCount, String avatarUrl) {
         GitHubRepository repository = new GitHubRepository();
         GitHubRepositoryOwner owner = new GitHubRepositoryOwner();
 
-        owner.setAvatarUrl(new URI(avatarUrl));
+        owner.setAvatarUrl(new UriTemplate(avatarUrl));
         owner.setLogin(username);
         owner.setId(1);
 

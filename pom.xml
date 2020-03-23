@@ -153,6 +153,13 @@
                                 <dateLibrary>java8</dateLibrary>
                                 <useRxJava2>true</useRxJava2>
                             </configOptions>
+
+                            <typeMappings>
+                                <typeMapping>URI=UriTemplate</typeMapping>
+                            </typeMappings>
+                            <importMappings>
+                                <importMapping>UriTemplate=org.springframework.web.util.UriTemplate</importMapping>
+                            </importMappings>
                         </configuration>
                     </execution>
                 </executions>

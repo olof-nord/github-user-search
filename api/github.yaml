@@ -127,12 +127,15 @@ components:
               example: https://api.github.com/users/olof-nord/followers
             following_url:
               type: string
+              format: uri
               example: https://api.github.com/users/olof-nord/following{/other_user}
             gists_url:
               type: string
+              format: uri
               example: https://api.github.com/users/olof-nord/gists{/gist_id}
             starred_url:
               type: string
+              format: uri
               example: https://api.github.com/users/olof-nord/starred{/owner}{/repo}
             subscriptions_url:
               type: string
@@ -148,6 +151,7 @@ components:
               example: https://api.github.com/users/olof-nord/repos
             events_url:
               type: string
+              format: uri
               example: https://api.github.com/users/olof-nord/events{/privacy}
             received_events_url:
               type: string
@@ -181,9 +185,11 @@ components:
           example: https://api.github.com/repos/olof-nord/github-user-search/forks
         keys_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/keys{/key_id}
         collaborators_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/collaborators{/collaborator}
         teams_url:
           type: string
@@ -195,6 +201,7 @@ components:
           example: https://api.github.com/repos/olof-nord/github-user-search/hooks
         issue_events_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/issues/events{/number}
         events_url:
           type: string
@@ -202,9 +209,11 @@ components:
           example: https://api.github.com/repos/olof-nord/github-user-search/events
         assignees_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/assignees{/user}
         branches_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/branches{/branch}
         tags_url:
           type: string
@@ -212,18 +221,23 @@ components:
           example: https://api.github.com/repos/olof-nord/github-user-search/tags
         blobs_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/git/blobs{/sha}
         git_tags_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/git/tags{/sha}
         git_refs_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/git/refs{/sha}
         trees_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/git/trees{/sha}
         statuses_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/statuses/{sha}
         languages_url:
           type: string
@@ -247,21 +261,27 @@ components:
           example: https://api.github.com/repos/olof-nord/github-user-search/subscription
         commits_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/commits{/sha}
         git_commits_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/git/commits{/sha}
         comments_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/comments{/number}
         issue_comment_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/issues/comments{/number}
         contents_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/contents/{+path}
         compare_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/compare/{base}...{head}
         merges_url:
           type: string
@@ -269,6 +289,7 @@ components:
           example: https://api.github.com/repos/olof-nord/github-user-search/merges
         archive_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/{archive_format}{/ref}
         downloads_url:
           type: string
@@ -276,21 +297,27 @@ components:
           example: https://api.github.com/repos/olof-nord/github-user-search/downloads
         issues_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/issues{/number}
         pulls_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/pulls{/number}
         milestones_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/milestones{/number}
         notifications_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/notifications{?since,all,participating}
         labels_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/labels{/name}
         releases_url:
           type: string
+          format: uri
           example: https://api.github.com/repos/olof-nord/github-user-search/releases{/id}
         deployments_url:
           type: string
