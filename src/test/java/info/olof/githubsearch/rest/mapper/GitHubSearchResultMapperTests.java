@@ -12,7 +12,9 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.util.UriTemplate;
 
+import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.OffsetDateTime;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,7 +29,7 @@ public class GitHubSearchResultMapperTests {
     private GitHubSearchResultMapperImpl searchResultMapper;
 
     @SuppressWarnings("unused")
-    private static Stream<Arguments> provideTestInput() {
+    private static Stream<Arguments> provideTestInput() throws URISyntaxException {
         GitHubRepository repository1 = setUpTestRepositoryResponse(
             "olof-nord",
             "github-user-search",
@@ -64,13 +66,14 @@ public class GitHubSearchResultMapperTests {
         assertEquals(result.getNumberOfFollowers(), repository.getWatchersCount());
     }
 
-    private static GitHubRepository setUpTestRepositoryResponse(String username, String repoName, int watchCount, String avatarUrl) {
+    private static GitHubRepository setUpTestRepositoryResponse(String username, String repoName, int watchCount, String avatarUrl) throws URISyntaxException {
         GitHubRepository repository = new GitHubRepository();
         GitHubRepositoryOwner owner = new GitHubRepositoryOwner();
 
-        owner.setAvatarUrl(new UriTemplate(avatarUrl));
+        owner.setAvatarUrl(new URI(avatarUrl));
         owner.setLogin(username);
         owner.setId(1);
+        owner.setFollowingUrl(new UriTemplate("https://api.github.com/users/olof-nord/following{/other_user}"));
 
         repository.setOwner(owner);
         repository.setWatchersCount(watchCount);
@@ -78,6 +81,12 @@ public class GitHubSearchResultMapperTests {
 
         repository.setPrivate(false);
         repository.setArchived(false);
+
+        repository.setCreatedAt(OffsetDateTime.now().minusDays(10));
+        repository.setUpdatedAt(OffsetDateTime.now().minusDays(5));
+        repository.setPushedAt(OffsetDateTime.now());
+
+        repository.setNotificationsUrl(new UriTemplate("https://api.github.com/repos/olof-nord/github-user-search/notifications{?since,all,participating}"));
 
         return repository;
     }

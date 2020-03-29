@@ -155,7 +155,7 @@
                             </configOptions>
 
                             <typeMappings>
-                                <typeMapping>URI=UriTemplate</typeMapping>
+                                <typeMapping>uri-template=UriTemplate</typeMapping>
                             </typeMappings>
                             <importMappings>
                                 <importMapping>UriTemplate=org.springframework.web.util.UriTemplate</importMapping>

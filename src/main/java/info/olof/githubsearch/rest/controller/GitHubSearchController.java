@@ -44,7 +44,7 @@ public class GitHubSearchController {
                     deferredResult.setResult(ResponseEntity.ok().body(repositories));
                 },
                 error -> {
-                    LOGGER.error("No search results found");
+                    LOGGER.error(error.getMessage());
                     deferredResult.setResult(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
                 });
 
