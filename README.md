@@ -12,11 +12,14 @@ Search for GitHub users using the GitHub Search API
 - [retrofit](https://github.com/square/retrofit) with [rxjava2](https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava2) as HTTP client 
 - [mapstruct](https://github.com/mapstruct/mapstruct) for response object field mapping
 - [java-dotenv](https://github.com/cdimascio/java-dotenv) for .env file support
+- [junit-pioneer](https://github.com/junit-pioneer/junit-pioneer) for Java properties testing support
+- [junit5-system-exit](https://github.com/tginsberg/junit5-system-exit) for Junit5 System.exit testing support
 
 ### GitHub Search API
 - The information is fetched from the [GitHub API](https://developer.github.com).
 - Note that a GitHub OAuth2 token is required for authentication. 
 - This could be put in a `.env` file in the root folder with a key `GITHUB_ACCESS_TOKEN=xyz` specified.
+- This could also be set with a system property `mvn -DGITHUB_ACCESS_TOKEN=xyz spring-boot:run`.
 
 ### Build JAR and run tests
 `mvn clean package`  

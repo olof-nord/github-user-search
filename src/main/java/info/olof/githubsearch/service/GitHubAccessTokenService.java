@@ -17,10 +17,10 @@ public class GitHubAccessTokenService {
 
     public String getToken() {
 
-        String accessToken = dotenvConfiguration.dotenv().get("GITHUB_ACCESS_TOKEN");
+        String accessToken = System.getProperty("GITHUB_ACCESS_TOKEN");
 
         if(accessToken == null) {
-            accessToken = System.getenv("GITHUB_ACCESS_TOKEN");
+            accessToken =  dotenvConfiguration.dotenv().get("GITHUB_ACCESS_TOKEN");
         }
 
         if(accessToken == null){
