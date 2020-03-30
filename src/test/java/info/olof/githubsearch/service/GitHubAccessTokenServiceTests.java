@@ -3,6 +3,7 @@ package info.olof.githubsearch.service;
 import com.ginsberg.junit.exit.ExpectSystemExit;
 import info.olof.githubsearch.config.DotenvConfiguration;
 import io.github.cdimascio.dotenv.Dotenv;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junitpioneer.jupiter.ClearSystemProperty;
@@ -14,7 +15,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
@@ -29,12 +29,18 @@ public class GitHubAccessTokenServiceTests {
     @MockBean
     private DotenvConfiguration dotenvConfiguration;
 
+    @MockBean
+    private Dotenv dotenv;
+
+    @BeforeEach
+    public void setup() {
+        when(dotenvConfiguration.dotenv()).thenReturn(dotenv);
+    }
+
     @Test
     public void givenGetToken_whenDotEnvAvailable_thenUseIt() {
         String dotEnvTokenValue = "DotEnv";
-        Dotenv dotenv = mock(Dotenv.class);
 
-        when(dotenvConfiguration.dotenv()).thenReturn(dotenv);
         when(dotenv.get(anyString())).thenReturn(dotEnvTokenValue);
 
         assertEquals(customerService.getToken(), "token " + dotEnvTokenValue);
@@ -44,8 +50,6 @@ public class GitHubAccessTokenServiceTests {
     @SetSystemProperty(key = "GITHUB_ACCESS_TOKEN", value = "System")
     public void givenGetToken_whenNoDotEnvAvailable_thenCheckSystemProperty() {
 
-        when(dotenvConfiguration.dotenv()).thenReturn(Dotenv.load());
-
         assertEquals(customerService.getToken(), "token " + "System");
     }
 
@@ -53,9 +57,7 @@ public class GitHubAccessTokenServiceTests {
     @ExpectSystemExit
     @ClearSystemProperty(key = "GITHUB_ACCESS_TOKEN")
     public void givenGetToken_whenNoTokenAvailable_thenShutdown() {
-        Dotenv dotenv = mock(Dotenv.class);
 
-        when(dotenvConfiguration.dotenv()).thenReturn(dotenv);
         when(dotenv.get(anyString())).thenReturn(null);
 
         customerService.getToken();
