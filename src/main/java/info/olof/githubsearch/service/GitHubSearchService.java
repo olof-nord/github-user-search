@@ -1,7 +1,5 @@
 package info.olof.githubsearch.service;
 
-import info.olof.githubsearch.config.RetrofitConfiguration;
-import info.olof.githubsearch.generated.api.GitHubSearchApi;
 import info.olof.githubsearch.generated.model.GitHubRepositorySearch;
 import io.reactivex.Observable;
 import org.slf4j.Logger;
@@ -17,15 +15,13 @@ public class GitHubSearchService {
     @Value("${github.accept-header}")
     private String acceptHeader;
 
-    private GitHubSearchApi gitHubSearchApi;
-    private GitHubAccessTokenService accessTokenService;
+    private final GitHubAccessTokenService accessTokenService;
+    private final GitHubApiService gitHubApiService;
 
-    public GitHubSearchService(RetrofitConfiguration retrofitConfiguration,
-                               GitHubAccessTokenService accessTokenService) {
-
+    public GitHubSearchService(GitHubAccessTokenService accessTokenService,
+                               GitHubApiService gitHubApiService) {
         this.accessTokenService = accessTokenService;
-        this.gitHubSearchApi = retrofitConfiguration.retrofit().create(GitHubSearchApi.class);
-
+        this.gitHubApiService = gitHubApiService;
     }
 
     public Observable<GitHubRepositorySearch> searchGitHubRepositories(String username, String programmingLanguage) {
@@ -36,7 +32,7 @@ public class GitHubSearchService {
         String searchQuery = username + " language:" + programmingLanguage;
         LOGGER.info("GitHub search query: '{}'", searchQuery);
 
-        return gitHubSearchApi.getRepositories(accessToken, searchQuery, acceptHeader);
+        return gitHubApiService.getGitHubSearchApi().getRepositories(accessToken, searchQuery, acceptHeader);
 
     }
 
