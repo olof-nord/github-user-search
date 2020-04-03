@@ -10,3 +10,11 @@ github:
 
 retrofit:
   call-timeout: 15s
+
+---
+
+spring:
+  profiles: test
+
+github:
+  base-url: http://127.0.0.1:8000

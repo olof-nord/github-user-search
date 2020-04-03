@@ -14,6 +14,8 @@ Search for GitHub users using the GitHub Search API
 - [java-dotenv](https://github.com/cdimascio/java-dotenv) for .env file support
 - [junit-pioneer](https://github.com/junit-pioneer/junit-pioneer) for Java properties testing support
 - [junit5-system-exit](https://github.com/tginsberg/junit5-system-exit) for Junit5 System.exit testing support
+- [spockframework](https://github.com/spockframework/spock) with [groovy](https://github.com/apache/groovy) for component tests
+- [wiremock](https://github.com/tomakehurst/wiremock) for mocking HTTP calls
 
 ### GitHub Search API
 - The information is fetched from the [GitHub API](https://developer.github.com).
