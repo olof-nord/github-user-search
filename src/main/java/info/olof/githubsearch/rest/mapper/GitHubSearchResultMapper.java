@@ -11,6 +11,6 @@ public interface GitHubSearchResultMapper {
     @Mapping(source = "owner.login", target = "username")
     @Mapping(source = "owner.avatarUrl", target = "avatarUrl")
     @Mapping(source = "watchersCount", target = "numberOfFollowers")
-    SimpleRepositorySearchResponse GitHubSearchToSimpleRepositorySearchResponse(GitHubRepository repository);
+    SimpleRepositorySearchResponse gitHubSearchToSimpleRepositorySearchResponse(GitHubRepository repository);
 
 }

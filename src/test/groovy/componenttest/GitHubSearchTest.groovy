@@ -24,10 +24,12 @@ class GitHubSearchTest extends BaseComponentTest {
         then: "The request is successful"
         gitHubSearchResponse.statusCodeValue == 200
 
-        gitHubSearchResponse.json.username =~ userName
-        gitHubSearchResponse.json.name =~ 'github-user-search'
-        gitHubSearchResponse.json.avatarUrl == ['https://avatars2.githubusercontent.com/u/488769?v=4']
-        gitHubSearchResponse.json.numberOfFollowers =~ 0
+        gitHubSearchResponse.json.data.get(0).username == userName
+        gitHubSearchResponse.json.data.get(0).name == 'github-user-search'
+        gitHubSearchResponse.json.data.get(0).avatarUrl == 'https://avatars2.githubusercontent.com/u/488769?v=4'
+        gitHubSearchResponse.json.data.get(0).numberOfFollowers == 0
+
+        gitHubSearchResponse.json.error == null
 
     }
 
@@ -48,7 +50,11 @@ class GitHubSearchTest extends BaseComponentTest {
 
         then: "The request is not successful"
         gitHubSearchResponse.statusCodeValue == 400
-        !gitHubSearchResponse.hasBody()
+
+        gitHubSearchResponse.json.error.message == 'Validation Failed'
+        gitHubSearchResponse.json.error.errors.get(0).detailedMessage == 'The listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.'
+
+        gitHubSearchResponse.json.data == []
 
     }
 }

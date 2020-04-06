@@ -49,7 +49,13 @@ paths:
           content:
             'application/json':
               schema:
-                $ref: '#/components/schemas/SimpleRepositorySearchResponses'
+                $ref: '#/components/schemas/SimpleSearchResponse'
+        '400':
+          description: Unsuccessful response
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/SimpleSearchResponse'
 
 components:
   schemas:
@@ -438,6 +444,15 @@ components:
           format: float
           example: 1.0
 
+    SimpleSearchResponse:
+      type: object
+      description: This is the combined response for the simplified GitHub repository search result
+      properties:
+        data:
+          $ref: '#/components/schemas/SimpleRepositorySearchResponses'
+        error:
+          $ref: '#/components/schemas/SimpleRepositorySearchErrorResponse'
+
     SimpleRepositorySearchResponse:
       type: object
       description: This is the response model for the simplified GitHub repository search results
@@ -465,7 +480,7 @@ components:
       items:
         $ref: '#/components/schemas/SimpleRepositorySearchResponse'
 
-    GitHubError:
+    GitHubErrorResponse:
       type: object
       description: The response model used for GitHub errors
       properties:
@@ -481,23 +496,49 @@ components:
         errors:
           type: array
           items:
-            type: object
-            description: More detailed error messages
-            properties:
-              message:
-                type: string
-                example: The listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.
-                description: Detailed error message
-              resource:
-                type: string
-                example: Search
-              field:
-                type: string
-                example: q
-              code:
-                type: string
-                example: invalid
-                description: The error code
+            $ref: '#/components/schemas/GitHubError'
+
+    GitHubError:
+      type: object
+      description: Detailed error message
+      properties:
+        message:
+          type: string
+          example: The listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.
+          description: Detailed error message
+        resource:
+          type: string
+          example: Search
+        field:
+          type: string
+          example: q
+        code:
+          type: string
+          example: invalid
+          description: The error code
+
+
+    SimpleRepositorySearchErrorResponse:
+      type: object
+      description: This is the response model for simplified GitHub search error
+      properties:
+        message:
+          type: string
+          example: Validation Failed
+          description: General error message
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/SimpleRepositorySearchError'
+
+    SimpleRepositorySearchError:
+      type: object
+      description: Detailed error message
+      properties:
+        detailedMessage:
+          type: string
+          example: The listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them.
+          description: Detailed error message
 
   parameters:
     Query:

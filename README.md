@@ -42,26 +42,47 @@ they use in their public repositories as well as an username string.
 An example request:  
 `http://localhost:8080/search?username=olof-nord&programming_language=Java`
 
-Example response:
+Example successful response:
 ```json
-[
-    {
-        "username": "olof-nord",
-        "name": "java-clock",
-        "avatarUrl": "https://avatars2.githubusercontent.com/u/488769?v=4",
-        "numberOfFollowers": 1
-    },
-    {
-        "username": "olof-nord",
-        "name": "bank-backend-java",
-        "avatarUrl": "https://avatars2.githubusercontent.com/u/488769?v=4",
-        "numberOfFollowers": 0
-    },
-    {
-        "username": "olof-nord",
-        "name": "github-user-search",
-        "avatarUrl": "https://avatars2.githubusercontent.com/u/488769?v=4",
-        "numberOfFollowers": 0
+{
+    "data": [
+        {
+            "username": "olof-nord",
+            "name": "java-clock",
+            "avatarUrl": "https://avatars2.githubusercontent.com/u/488769?v=4",
+            "numberOfFollowers": 1
+        },
+        {
+            "username": "olof-nord",
+            "name": "bank-backend-java",
+            "avatarUrl": "https://avatars2.githubusercontent.com/u/488769?v=4",
+            "numberOfFollowers": 0
+        },
+        {
+            "username": "olof-nord",
+            "name": "github-user-search",
+            "avatarUrl": "https://avatars2.githubusercontent.com/u/488769?v=4",
+            "numberOfFollowers": 0
+        }
+    ],
+    "error": null
+}
+```
+
+Another example request:  
+`http://localhost:8080/search?username=does-not-exist-at-all&programming_language=Java`
+
+Example unsuccessful response:
+```json
+{
+    "data": [],
+    "error": {
+        "message": "Validation Failed",
+        "errors": [
+            {
+                "detailedMessage": "The listed users and repositories cannot be searched either because the resources do not exist or you do not have permission to view them."
+            }
+        ]
     }
-]
+}
 ```

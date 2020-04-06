@@ -58,7 +58,7 @@ public class GitHubSearchResultMapperTests {
     @MethodSource("provideTestInput")
     void givenGitHubSearchResult_thenMapTo_SimpleResponse(GitHubRepository repository) {
 
-        SimpleRepositorySearchResponse result = searchResultMapper.GitHubSearchToSimpleRepositorySearchResponse(repository);
+        SimpleRepositorySearchResponse result = searchResultMapper.gitHubSearchToSimpleRepositorySearchResponse(repository);
 
         assertEquals(result.getUsername(), repository.getOwner().getLogin());
         assertEquals(result.getAvatarUrl(), repository.getOwner().getAvatarUrl());
