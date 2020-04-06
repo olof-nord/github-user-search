@@ -66,6 +66,7 @@ components:
         total_count:
           type: integer
           example: 2
+          minimum: 0
           description: The number of results available
         incomplete_results:
           type: boolean
@@ -364,10 +365,12 @@ components:
           type: integer
           example: 0
           default: 0
+          minimum: 0
         watchers_count:
           type: integer
           example: 0
           default: 0
+          minimum: 0
         language:
           type: string
           example: Java
@@ -390,6 +393,7 @@ components:
           type: integer
           example: 0
           default: 0
+          minimum: 0
         mirror_url:
           type: string
           format: uri
@@ -404,6 +408,7 @@ components:
           type: integer
           example: 0
           default: 0
+          minimum: 0
         license:
           type: object
           description: Repository license information
@@ -428,14 +433,17 @@ components:
           type: integer
           example: 0
           default: 0
+          minimum: 0
         open_issues:
           type: integer
           example: 0
           default: 0
+          minimum: 0
         watchers:
           type: integer
           example: 0
           default: 0
+          minimum: 0
         default_branch:
           type: string
           example: master
