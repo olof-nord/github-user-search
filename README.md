@@ -1,2 +1,6 @@
-# github-search
-Search for GitHub users using GitHub Search API 
+# GitLab 
+
+This repository has moved to GitLab:
+
+https://gitlab.com/olof-nord/github-user-search
+
